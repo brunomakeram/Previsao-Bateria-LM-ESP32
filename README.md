@@ -119,7 +119,7 @@ Para manter o código limpo, as bibliotecas, diretivas e tipos utilizados foram 
 - **`Serial.begin(115200)`**: Inicia a comunicação UART para depuração de código e visualização da interface pelo Monitor Serial, usando uma taxa de transferência rápida de bits.
 - **`Serial.println()` / `Serial.print()`**: Funções responsáveis pela saída dos relatórios formatados em `Prints.h`.
 
-### 3. 📖 Para ver cada termo do código com explicação e link, consulte o: [Glossário](GLOSSARIO.md).
+### 3. 📖 Para ver cada termo do código com explicação e link, consulte o: [Glossário](GLOSSARIO.md)
 
 ---
 
