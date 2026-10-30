@@ -47,47 +47,39 @@ O código-fonte está dividido em 6 arquivos principais dentro do diretório do 
 Abaixo está um resumo da estrutura do `Iniciar.ino`, demonstrando o fluxo limpo de como as etapas práticas interagem usando a arquitetura modular:
 
 ```cpp
-// ==================================================================================================== #
-// Importa os módulos locais que dividem as responsabilidades lógicas do sistema.
+
+// // Importa a biblioteca
+#include <Arduino.h>
+
+// Inclui os arquivos do projeto: dados, modelo, leitura e calculos
 #include "Dataset.h"
-#include "Leitura.h"
 #include "Modelo.h"
+#include "Leitura.h"
 #include "Calculos.h"
-#include "Prints.h"
-// ==================================================================================================== #
 
+// Roda uma vez ao ligar a placa ESP32
 void setup() {
-    // Inicializa a comunicação serial para interação de dados com o usuário.
-    Serial.begin(115200);
-    delay(1000);
-    Serial.println("--- Sistema de Previsão de Bateria Iniciado ---");
+  // Inicia a comunicação serial a 115200 baud
+  Serial.begin(115200);
+  // Espera 2 segundos pro monitor serial abrir
+  delay(2000);
+  // Monta o armazenamento e garante que o arquivo CSV exista
+  montarArmazenamento(caminho);
 }
 
+// Executado continuamente, permitindo novas consultas
 void loop() {
-    // Etapa 1: Leitura e validação
-    // O sistema aguarda ou captura as medições reais de entrada.
-    float carga = lerCarga();
-    float distancia = lerDistancia();
 
-    // Etapa 2: Validação Física baseada no Dataset
-    if (dadosSaoValidos(carga, distancia)) {
-        
-        // Etapa 3: Inferência no Modelo Matemático (Edge AI)
-        // Usa os pesos e viés (extraídos do treino em Python) para calcular o gasto diretamente no C++.
-        float gasto_previsto = preverGastoDaViagem(carga, distancia);
-
-        // Etapa 4: Ajustes e Cálculos Finais
-        // Garante que o gasto nunca ultrapasse 100% ou seja negativo.
-        float gasto_calculado = validarGastoPercentual(gasto_previsto);
-
-        // Etapa 5: Saída de Dados
-        // Exibe os resultados formatados para o usuário.
-        mostrarResultados(carga, distancia, gasto_calculado);
-    }
-
-    // Aguarda o próximo ciclo de leitura.
-    delay(2000);
+  // Roda o modelo a cada ciclo do loop
+  executarModelo();
+  // Avisa que tá prono pra nova consulta
+  Serial.println("\n================================");
+  Serial.println("Pronto para uma nova consulta!");
+  Serial.println("================================\n");
+  // Espera meio segundo antes do próximo ciclo
+  delay(500);
 }
+
 ```
 
 ---
@@ -98,7 +90,7 @@ Resultados visuais da execução da inferência rodando nativamente no ESP32:
 
 ### Saída do resultado no Monitor Serial
 
-![Saída do resultado do Treino](modelo/Iniciar/resultado.jpg)
+![Saída do resultado do Treino](imagens/resultado.jpg)
 
 ---
 
