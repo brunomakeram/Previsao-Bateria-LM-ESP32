@@ -1,5 +1,11 @@
 # Previsão de Bateria com Machine Learning Embarcado (ESP32 e C/C++)
 
+[
+
+![XERJ Corpus Hub contributor](https://hub.xerj.org/contributors/brunomakeram/badge.svg)
+
+](https://hub.xerj.org/contributors/brunomakeram)
+
 ## 📌 O que o projeto faz
 
 Este projeto embarca um modelo de aprendizado de máquina (previamente treinado) em um microcontrolador **ESP32**. O sistema utiliza os parâmetros matemáticos aprendidos na nuvem (pesos e vieses) para prever o consumo percentual de uma bateria diretamente no hardware (Edge Computing), relacionando os dados de peso/carga e distância.
