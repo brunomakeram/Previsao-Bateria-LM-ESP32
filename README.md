@@ -1,9 +1,6 @@
 # Previsão de Bateria com Machine Learning Embarcado (ESP32 e C/C++)
 
-[
-
-![XERJ Corpus Hub contributor](https://hub.xerj.org/contributors/brunomakeram/badge.svg)
-
+[![XERJ Corpus Hub contributor](https://hub.xerj.org/contributors/brunomakeram/badge.svg)
 ](https://hub.xerj.org/contributors/brunomakeram)
 
 ## 📌 O que o projeto faz
